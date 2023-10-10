@@ -17,6 +17,7 @@ use App\Http\Controllers\{HomeController, AuthController, TaskController};
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::post('/task/{id}', [TaskController::class, 'show'])->name('task.show');
+Route::post('/task/store', [TaskController::class, 'store'])->name('task.store');
 Route::get('/task/delete/{id}', [TaskController::class, 'delete'])->name('task.delete');
 Route::get('/task/new', [TaskController::class, 'create'])->name('task.create');
 Route::get('/task/edit/{id}', [TaskController::class, 'edit'])->name('task.edit');

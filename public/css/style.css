@@ -29,6 +29,7 @@ body {
 
 .sidebar {
     width: 100px;
+    height: 100vw;
     background-color: var(--color-primary);
 }
 
@@ -139,6 +140,9 @@ main .list {
 .task:hover {
     background-color: #dbdbf1;
 }
+.task_title  {
+    width: calc(100% / 3);
+}
 
 .task_title span {
     margin-left: 10px;
@@ -149,6 +153,8 @@ main .list {
     cursor: pointer;
 }
 .priority {
+    margin-left: 20px;
+    width: calc(100% / 3);
     display: flex;
     align-items: center;
 }
@@ -158,6 +164,11 @@ main .list {
     margin-right: 10px;
     background-color: cadetblue;
     border-radius: 50%;
+}
+.actions {
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: flex-end;
 }
 .actions .button-edit {
     margin-right: 10px;
@@ -176,8 +187,24 @@ main .list {
 }
 
 @media screen and  (max-width: 600px){
+    .sidebar {
+        display: none;
+    }
     .task {
         flex-direction: column;
         padding: 7px;
     }
+    .task_title  {
+        width: 100%;
+        justify-content: center;
+    }
+    .priority {
+        width: 100%;
+        justify-content: center;
+    }
+    .actions  {
+        width: 100%;
+        justify-content: center;
+    }
+
 }
