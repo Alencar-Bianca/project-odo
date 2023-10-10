@@ -1,14 +1,14 @@
 <div class="task">
     <div class="task_title">
-        <input type="checkbox" name="" class="task_checkbox">
-        <span>Titulo da tarefa</span>
+        <input type="checkbox" name="" class="task_checkbox" @if($task->is_done) checked @endif>
+        <span>{{$task->title}}</span>
     </div>
     <div class="priority">
         <div class="circule"></div>
-        <span>Titulo da tarefa</span>
+        <span>{{$task->category->title}}</span>
     </div>
     <div class="actions">
-        <a href="{{ route('task.edit', ['id' => 1]) }}" class="button button-edit"><img src="/images/icon-edit.png" alt=""></a>
-        <a href="{{ route('task.delete', ['id' => 1]) }}" class="button button-delete"><img src="/images/icon-delete.png" alt=""></a>
+        <a href="{{ route('task.edit', ['id' => $task->id]) }}" class="button button-edit"><img src="/images/icon-edit.png" alt=""></a>
+        <a href="{{ route('task.delete', ['id' => $task->id]) }}" class="button button-delete"><img src="/images/icon-delete.png" alt=""></a>
     </div>
 </div>

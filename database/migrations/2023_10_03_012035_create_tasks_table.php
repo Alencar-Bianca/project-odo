@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable(false);
+            $table->boolean('is_done')->default(false);
             $table->string('description');
             $table->dateTime('due_date');
             $table->foreignIdFor(User::class)->references('id')->on('users')->onDelete('CASCADE');

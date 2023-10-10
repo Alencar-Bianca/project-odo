@@ -25,6 +25,7 @@ class TaskFactory extends Factory
         return [
             'title' => $this->faker->text(30),
             'description' => $this->faker->text(60),
+            'is_done' => $this->faker->boolean(30),
             'due_date' => $this->faker->dateTime(),
             'user_id' => $user ,
             'category_id' => $user->categories->random()

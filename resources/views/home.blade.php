@@ -31,7 +31,11 @@
         </div>
 
         <div class="task_list">
-            @include('components.task')
+            @forelse ($tasks as $task)
+                @include('components.task', ['task' => $task])
+                @empty
+                    <li>Sem tarefas no momento</li>
+            @endforelse
         </div>
     </section>
 @endsection

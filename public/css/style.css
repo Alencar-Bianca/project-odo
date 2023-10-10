@@ -12,11 +12,13 @@
     font-family: 'Rubik', sans-serif;
     color: var(--text-dark);
     text-decoration: none;
+
 }
 body {
     width: 100vw;
     height: 100vh;
     background-color: var(--bg-white);
+    overflow-x: hidden;
 }
 
 .container {
