@@ -22,4 +22,35 @@ class Task extends Model
     public static function getAllTasks() {
         return self::with('category')->get();
     }
+    public static function createNewTask($result) {
+        $done = $result->done ? 1 : 0;
+        return self::create([
+            'title' => $result->title,
+            'due_date' => $result->date,
+            'description' => $result->description,
+            'is_done' => $done,
+            'user_id' => 1,
+            'category_id' => $result->category,
+        ]);
+    }
+
+    public static function findOneTask($id) {
+        return self::with('category')->where('id', $id)->first();
+    }
+
+    public static function updateTask($result) {
+        $done = $result->done ? 1 : 0;
+        return self::where('id', $result->id)
+        ->update([
+            'title' => $result->title,
+            'due_date' => $result->date,
+            'description' => $result->description,
+            'is_done' => $done,
+            'user_id' => 1,
+            'category_id' => $result->category,
+        ]);
+    }
+    public static function deleteTask($id) {
+        return self::where('id', $id)->delete();
+    }
 }

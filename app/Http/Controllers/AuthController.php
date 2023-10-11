@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\UserRequest;
 
 class AuthController extends Controller
 {
@@ -12,4 +12,8 @@ class AuthController extends Controller
     public function register() {
         return view('register');
     }
+    public function registerUser(UserRequest $userRequest) {
+        return view('register');
+    }
 }
+

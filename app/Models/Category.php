@@ -18,4 +18,7 @@ class Category extends Model
     public function tasks() {
         return $this->hasMany(Task::class);
     }
+    public static function getAllCategory() {
+        return self::get();
+    }
 }

@@ -5,7 +5,34 @@
 @endsection
 
 
-@section('content')
-
+@section('styles')
+    <link rel="stylesheet" href="/css/create.css">
 @endsection
+
+
+
+@section('content')
+    <div class="container_task">
+        <h1>Cadastrar</h1>
+        <form action="{{route('register.user')}}" method="POST" class="form">
+            @csrf
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" class="task_input" placeholder="Digite o seu nome" id="nome" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" class="task_input" placeholder="Digite o seu email" id="email" required>
+
+            <label for="pass">Senha</label>
+            <input type="password" name="password" class="task_input" placeholder="Digite a sua senha" id="pass" required>
+
+            <label for="pass_confirm">Confirmar senha</label>
+            <input type="password" name="password_confirm" class="task_input" placeholder="Digite a sua senha" id="pass_confirm" required>
+
+            <div class="button-form">
+                <input type="submit" class="btn btn-primary" value="Cadastrar">
+            </div>
+        </form>
+    </div>
+@endsection
+
 

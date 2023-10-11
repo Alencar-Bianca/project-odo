@@ -16,11 +16,13 @@ use App\Http\Controllers\{HomeController, AuthController, TaskController};
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::post('/task/{id}', [TaskController::class, 'show'])->name('task.show');
+Route::get('/task/create', [TaskController::class, 'create'])->name('task.create');
 Route::post('/task/store', [TaskController::class, 'store'])->name('task.store');
-Route::get('/task/delete/{id}', [TaskController::class, 'delete'])->name('task.delete');
-Route::get('/task/new', [TaskController::class, 'create'])->name('task.create');
-Route::get('/task/edit/{id}', [TaskController::class, 'edit'])->name('task.edit');
+Route::post('/task/update/{id}', [TaskController::class, 'update'])->whereNumber('id')->name('task.update');
+Route::get('/task/edit/{id}', [TaskController::class, 'edit'])->whereNumber('id')->name('task.edit');
+Route::get('/task/delete/{id}', [TaskController::class, 'delete'])->whereNumber('id')->name('task.delete');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login/sucess', [AuthController::class, 'login'])->name('login.user');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register/user', [AuthController::class, 'registerUser'])->name('register.user');
