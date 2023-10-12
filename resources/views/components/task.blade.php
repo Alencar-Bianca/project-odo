@@ -1,6 +1,6 @@
 <div class="task">
     <div class="task_title">
-        <input type="checkbox" name="" class="task_checkbox" @if($task->is_done) checked @endif>
+        <input type="checkbox" name="done" class="task_checkbox" @if($task->is_done) checked @endif onchange="taskDone(this)" data-id="{{$task->id}}">
         <span>{{$task->title}}</span>
     </div>
     <div class="priority">
@@ -12,3 +12,5 @@
         <a href="{{ route('task.delete', ['id' => $task->id]) }}" class="button button-delete"><img src="/images/icon-delete.png" alt=""></a>
     </div>
 </div>
+
+

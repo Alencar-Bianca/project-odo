@@ -1,6 +1,9 @@
 @extends('components.layout')
 @section('title') TodoApp @endsection
-@section('button-nav') <a href="{{route('task.create')}}" class="btn btn-primary">Criar Tarefa</a> @endsection
+@section('button-nav')
+    <a href="{{route('task.create')}}" class="btn btn-primary">Criar Tarefa</a>
+    <a href="{{route('logout')}}" class="btn btn-primary">Sair</a>
+@endsection
 @section('content')
     <section class="graph">
         <div class="graph_header">
@@ -38,5 +41,31 @@
             @endforelse
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script>
+        async function taskDone(el) {
+            let done = el.checked;
+            let taskId = el.dataset.id;
+            let url = "{{route('task.update.isdone')}}";
+
+            let send = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    'accept': 'application/json',
+                },
+                body: JSON.stringify({ done, taskId, _token: '{{csrf_token()}}' })
+            });
+
+            result = await send.json();
+            if (result.success) {
+
+            } else {
+                el.checked = !done
+            }
+        }
+    </script>
 @endsection
 

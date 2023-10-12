@@ -25,12 +25,23 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task', 'categories'));
     }
     public function update(Request $request) {
-        dd($request);
         Task::updateTask($request);
         return redirect()->route('home.index');
     }
-    public function delete(Request $request) {
 
+    public function isdone(Request $request) {
+        $task = Task::findOrFail($request->taskId);
+
+        if (!$task) {
+            return ['success' => false];
+        }
+
+        $task->is_done = $request->done;
+        $task->save();
+        return ['success' => true];
+    }
+
+    public function delete(Request $request) {
         Task::deleteTask($request->id);
         return redirect()->back();
     }

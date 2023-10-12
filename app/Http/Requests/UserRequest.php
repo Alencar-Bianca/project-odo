@@ -22,10 +22,20 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:2', 'max:100'],
+            'nome' => ['required', 'min:2', 'max:100'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:6, confirmed'],
-            'password_confirm' => ['required', 'min:2'],
+            'password' => ['required', 'min:6', 'confirmed'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nome.required' => "O campo nome é obrigatório",
+            'nome.min' => "O campo nome tem que conter no minimo 2 caracter",
+            'password.min' => "O campo senha tem que conter no minimo 2 caracter",
+            'password.confirmed' => "As senhas não são iguais",
+            'email.required' => "O campo email é obrigatório",
         ];
     }
 }

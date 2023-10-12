@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\{Category, Task};
-
+use Auth;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -50,5 +50,17 @@ class User extends Authenticatable
     }
     public function categories() {
         return $this->hasMany(Category::class);
+    }
+
+    public static function createUser($dados) {
+        return self::create([
+            'name' => $dados['nome'] ,
+            'email' => $dados['email'] ,
+            'password' => $dados['password'] ,
+        ]);
+    }
+
+    public static function logarUser($dados) {
+        return Auth::attempt(['email' => $dados->email, 'password' => $dados->password]);
     }
 }

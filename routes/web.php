@@ -14,15 +14,21 @@ use App\Http\Controllers\{HomeController, AuthController, TaskController};
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/task/create', [TaskController::class, 'create'])->name('task.create');
-Route::post('/task/store', [TaskController::class, 'store'])->name('task.store');
-Route::post('/task/update/{id}', [TaskController::class, 'update'])->whereNumber('id')->name('task.update');
-Route::get('/task/edit/{id}', [TaskController::class, 'edit'])->whereNumber('id')->name('task.edit');
-Route::get('/task/delete/{id}', [TaskController::class, 'delete'])->whereNumber('id')->name('task.delete');
+    Route::get('/task/create', [TaskController::class, 'create'])->name('task.create');
+    Route::post('/task/store', [TaskController::class, 'store'])->name('task.store');
+    Route::post('/task/update/{id}', [TaskController::class, 'update'])->whereNumber('id')->name('task.update');
+    Route::get('/task/edit/{id}', [TaskController::class, 'edit'])->whereNumber('id')->name('task.edit');
+    Route::get('/task/delete/{id}', [TaskController::class, 'delete'])->whereNumber('id')->name('task.delete');
+    route::post('task/update-isdone', [TaskController::class, 'isdone'])->whereNumber('id')->name('task.update.isdone');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login/sucess', [AuthController::class, 'login'])->name('login.user');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/login/entrar', [AuthController::class, 'logar'])->name('login.user');
+Route::get('/cadastro', [AuthController::class, 'register'])->name('register');
 Route::post('/register/user', [AuthController::class, 'registerUser'])->name('register.user');
+
