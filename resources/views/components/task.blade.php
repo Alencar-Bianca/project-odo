@@ -1,4 +1,4 @@
-<div class="task">
+<div class="task @if($task->is_done) task_done @else task_pending @endif">
     <div class="task_title">
         <input type="checkbox" name="done" class="task_checkbox" @if($task->is_done) checked @endif onchange="taskDone(this)" data-id="{{$task->id}}">
         <span>{{$task->title}}</span>

@@ -10,9 +10,13 @@
             <h2>Progresso do dia</h2>
             <hr class="line-header">
             <div class="graph_header_data">
-                <img src="/images/icon-prev.png" alt="">
-                <span>11 de Jul</span>
-                <img src="/images/icon-next.png" alt="">
+                <a href="{{route('home.index', ['date' => $tasks->prev])}}">
+                    <img src="/images/icon-prev.png" alt="">
+                </a>
+                <span>{{$tasks->dateString }}</span>
+                <a href="{{route('home.index', ['date' => $tasks->next])}}">
+                    <img src="/images/icon-next.png" alt="">
+                </a>
             </div>
         </div>
         <div class="graph_header_subtitle">
@@ -28,8 +32,10 @@
     </section>
     <section class="list">
         <div class="list_header">
-            <select class="list_header_select">
-                <option value="1">Todas as tarefas</option>
+            <select class="list_header_select" onchange="takFilter(this)">
+                <option value="0">Todas as tarefas</option>
+                <option value="1">Tarefas Pendentes</option>
+                <option value="2">Tarefas Realizadas</option>
             </select>
         </div>
 
@@ -44,6 +50,28 @@
 @endsection
 
 @section('scripts')
+    <script>
+        function takFilter(element) {
+            showAllTasks();
+
+            if(element.value == 1) {
+                document.querySelectorAll('.task_done').forEach(function(e) {
+                    e.style.display = 'none';
+                });
+            } else if(element.value == 2){
+                document.querySelectorAll('.task_pending').forEach(function(e) {
+                    e.style.display = 'none';
+                });
+            }
+        }
+
+        function showAllTasks() {
+            document.querySelectorAll('.task').forEach(function(e) {
+                e.style.display = "flex";
+            });
+        }
+    </script>
+
     <script>
         async function taskDone(el) {
             let done = el.checked;

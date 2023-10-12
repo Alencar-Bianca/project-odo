@@ -22,6 +22,9 @@ class Task extends Model
     public static function getAllTasks() {
         return self::with('category')->get();
     }
+    public static function getByDate($date) {
+        return self::whereDate('due_date', $date)->get();
+    }
     public static function createNewTask($result) {
         $done = $result->done ? 1 : 0;
         return self::create([

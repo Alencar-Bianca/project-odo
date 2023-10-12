@@ -21,4 +21,5 @@ class Category extends Model
     public static function getAllCategory() {
         return self::get();
     }
+
 }
